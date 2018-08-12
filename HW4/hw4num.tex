@@ -1,0 +1,151 @@
+\documentclass[11pt]{article}
+%Increase the text height
+\addtolength{\voffset}{-62pt}
+\addtolength{\textheight}{62pt}
+\usepackage{amsmath}
+
+%Increase the text width
+\addtolength{\hoffset}{-22pt}
+\addtolength{\oddsidemargin}{-32pt}
+\addtolength{\marginparsep}{-11pt}
+\addtolength{\marginparwidth}{-45pt}
+\addtolength{\textwidth}{110pt}
+\usepackage{mathtools}
+\begin{document}
+\pagestyle{myheadings}
+\markright{\sc Tunahan Yadigarbigun-Furkan Emre Yilmaz 230201003-230201057  %
+\hfill  /p.}
+
+\paragraph{Solution 1.}
+\paragraph{a.} Using three point difference formula we are asked to approximate $f'(0)$, $f(x) = cos(x)$, $h = 0.01$
+\paragraph{} Start with writing three point difference formula for second derivative aproximation with error term included:
+\begin{eqnarray}
+f''(x) &=& \frac{f(x-h) - 2f(x) + f(x+h)}{h^2} -  \underbrace{\frac{h^2}{12}f^\mathrm{\romannumeral 4}(c)\quad}_{\text{Error Term}} \
+\end{eqnarray}
+where we know that $c$ in the interval of $x-h < c < x+h$ and continue with substituting values to the formula (1) without error term included:
+\begin{eqnarray*}
+f''(0) &=& \frac{f(-0.01) - 2f(0) + f(0.01)}{(0.01)^2} \\
+&=& \frac{cos(-0.01) - 2 cos(0) + cos(0.01)}{(0.01)^2} \\
+&=& -0.999991666
+\end{eqnarray*}
+for c we can say $-0.01 < c < 0.01$ and error is
+\begin{eqnarray*}
+\frac{(0.01)^2}{12}cos(c)
+\end{eqnarray*} 
+\paragraph{b.} We are asked to find the error term for the approximation formula:
+\begin{eqnarray*}
+f'(x) &=& \frac{4f(x+h) - 3f(x) - f(x-2h)}{6h}
+\end{eqnarray*}
+\paragraph{}Using Taylor's Theorem we can make two expansion to reach our goal approximation:
+\begin{eqnarray}
+f(x+h) &=& f(x) + hf'(x) + \frac{h^2}{2}f''(x) + \frac{h^3}{6}f''' (c_1)\\
+f(x-2h) &=& f(x) - 2hf'(x) + 2h^2f''(x) - \frac{4}{3}h^3f'''(c_2)
+\end{eqnarray}
+applying Generalized Intermediate Value Theorem we can combine $c_1=c_2=c$ and $x-2h < c < x+h$ and continue with multiplying (2) equation with 4:
+\begin{eqnarray}
+4f(x+h) = 4f(x) + 4hf'(x) + 2h^2f''(x) + \frac{2}{3} h^3f'''(c_1)
+\end{eqnarray}
+end substracting equation (4)(3) we obtain:
+\begin{eqnarray*}
+4f(x+h) &=& 4f(x) + 4hf'(x) + 2h^2f''(x) + \frac{2}{3} h^3f'''(c_1) \\
+f(x-2h) &=& f(x) - 2hf'(x) + 2h^2f''(x) - \frac{4}{3}h^3f'''(c_2)
+\end{eqnarray*}
+result is:
+\begin{eqnarray*}
+4f(x+h) - f(x-2h) &=& 3f(x) + 6hf'(x) + 2h^3f'''(c) \\
+6hf'(x) &=& 4f(x+h) - 3f(x) - f(x+2h) -2h^3f'''(c) \\
+f'(x) &=& \frac{4f(x+h) - 3f(x) - f(x+2h)}{6h} -\underbrace{\frac{h^2}{3}f'''(c)}_{\text{Error Term}} \
+\end{eqnarray*}
+\paragraph{}We obtained the error term as
+\begin{eqnarray*}
+\frac{h^2}{3}f'''(c) 
+\end{eqnarray*}
+where $c$ in the interval of $x-2h < c < x+h$
+
+\paragraph{Solution 2.a} For the composite Trapezoid Rule, $h$ is equal to $\frac{(b-a)}{m} $ and $a < c < b$
+\begin{equation*}
+\int_{a}^{b} f(x) dx = \frac{h}{2} (y_0 + y_m + 2 \sum\limits_{i=1}^{m-1} y_i )
+ - \frac{(b-a)h^2}{12} f^{\prime\prime}(c)
+\end{equation*}
+\paragraph{} Taking $m=1$ and $h= \frac{\pi}{2}$ the approximation is 
+
+\begin{equation*}
+\int_{0}^{\frac{\pi}{2}} cosx dx \approx \frac{\pi}{4} (1 + 0 + 2[0] ) \approx 0,785
+\end{equation*}
+\paragraph{} The error is at most
+\begin{equation*}
+\frac{(\frac{\pi}{2})^3}{12} \left|-1\right| = 0.322982
+\end{equation*}
+\paragraph{} where the exact value is 1.
+
+\paragraph{} Taking $m=2$ and $h= \frac{\pi}{4}$ the approximation is 
+
+\begin{equation*}
+\int_{0}^{\frac{\pi}{2}} cosx dx \approx \frac{\pi}{8} (1 + 0 + 2[0.7071] ) \approx 0,948
+\end{equation*}
+\paragraph{} The error is at most
+\begin{equation*}
+\frac{(\frac{\pi}{2}).(\frac{\pi}{4})^2}{12} \left|-1\right| = 0.080746
+\end{equation*}
+\paragraph{} where the exact value is 1.
+
+\paragraph{} Taking $m=4$ and $h= \frac{\pi}{8}$ the approximation is 
+
+\begin{equation*}
+\int_{0}^{\frac{\pi}{2}} cosx dx \approx \frac{\pi}{16} (1 + 0 + 2[0.9238 + 0.7071 + 0.3826] ) \approx 0,987
+\end{equation*}
+\paragraph{} The error is at most
+\begin{equation*}
+\frac{(\frac{\pi}{2}).(\frac{\pi}{8})^2}{12} \left|-1\right| = 0.020187
+\end{equation*}
+\paragraph{} where the exact value is 1.
+
+\paragraph{Solution 2.b} For the composite Simpson's Rule, $h$ is equal to $\frac{(b-a)}{2m} $ and $a < c < b$
+\begin{equation*}
+\int_{a}^{b} f(x) dx = \frac{h}{3} (y_0 + y_{2m} + 4 \sum\limits_{i=1}^{m} y_{2i-1} + 2 \sum\limits_{i=1}^{m-1} y_{2i})
+ - \frac{(b-a)h^4}{180} f^{\prime\prime\prime\prime}(c)
+\end{equation*}
+\paragraph{} Taking $m=1$ and $h= \frac{\pi}{4}$ the approximation is 
+
+\begin{equation*}
+\int_{0}^{\frac{\pi}{2}} cosx dx \approx \frac{\pi}{12} (1 + 0 + 4[0.7071] + 2[0]) \approx 1.002273
+\end{equation*}
+\paragraph{} The error is at most
+\begin{equation*}
+\frac{(\frac{\pi}{2}).(\frac{\pi}{4})^4}{180} \left|-1\right| = 0.003321
+\end{equation*}
+\paragraph{} where the exact value is 1.
+
+\paragraph{} Taking $m=2$ and $h= \frac{\pi}{8}$ the approximation is 
+
+\begin{equation*}
+\int_{0}^{\frac{\pi}{2}} cosx dx \approx \frac{\pi}{24} (1 + 0 + 4[0.9238 + 0.3826] + 2[0.7071]) \approx 1.000126
+\end{equation*}
+\paragraph{} The error is at most
+\begin{equation*}
+\frac{(\frac{\pi}{2}).(\frac{\pi}{8})^4}{180} \left|-1\right| = 0.0002075
+\end{equation*}
+\paragraph{} where the exact value is 1.
+
+\paragraph{} Taking $m=4$ and $h= \frac{\pi}{16}$ the approximation is 
+
+\begin{equation*}
+\int_{0}^{\frac{\pi}{2}} cosx dx \approx \frac{\pi}{48} (1 + 0 + 4[0.9807 + 0.8314 + 0.5555 + 0.1950] + 2[0.9238 + 0.7071 + 0.3826]) \approx 1.0000081
+\end{equation*}
+\paragraph{} The error is at most
+\begin{equation*}
+\frac{(\frac{\pi}{2}).(\frac{\pi}{16})^4}{180} \left|-1\right| = 0.000013
+\end{equation*}
+\paragraph{} where the exact value is 1.
+\newpage
+\paragraph{Solution 2.c} Approximating the integral using Trapezoid Rule with 
+\paragraph{} m = 32   results 6.89456
+\paragraph{} m = 64   results 6.88927
+\paragraph{} m = 128 results 6.88795
+
+\paragraph{Solution 2.d} Approximating the integral using Simpson's Rule with 
+\paragraph{} m = 32   results 6.88750936
+\paragraph{} m = 64   results 6.88751044
+\paragraph{} m = 128  results 6.88751058
+
+\end{document}
